@@ -1,4 +1,4 @@
 export enum AuthProto {
-  SERVICE_NAME = 'AuthService',
-  PACKAGE_NAME = 'auth',
+  AUTH_SERVICE_NAME = 'AuthService',
+  AUTH_PACKAGE_NAME = 'auth',
 }

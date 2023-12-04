@@ -12,9 +12,9 @@ import { AuthProto } from '../../domain/enums/auth.enums';
   imports: [
     ClientsModule.register([
       {
-        name: AuthProto.SERVICE_NAME,
+        name: AuthProto.AUTH_PACKAGE_NAME,
         options: {
-          package: AuthProto.PACKAGE_NAME,
+          package: AuthProto.AUTH_PACKAGE_NAME,
           protoPath: join(__dirname, '../proto/auth.proto'),
           url: '0.0.0.0:50051',
         },

@@ -1,9 +1,18 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
+import { ClientGrpc } from '@nestjs/microservices';
+
 import { CreateAuthDto } from '../../domain/dto/create-auth.dto';
 import { UpdateAuthDto } from '../../domain/dto/update-auth.dto';
+import { AuthProto } from '../../domain/enums/auth.enums';
+import { AuthServiceClient } from '../proto/auth.pb';
 
 @Injectable()
 export class AuthService {
+  private svc: AuthServiceClient;
+
+  @Inject(AuthProto.AUTH_SERVICE_NAME)
+  private readonly client: ClientGrpc;
+
   create(createAuthDto: CreateAuthDto) {
     return {
       message: 'This action adds a new auth',
