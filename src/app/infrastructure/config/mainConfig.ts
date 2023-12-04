@@ -6,10 +6,11 @@ import * as cookieParser from 'cookie-parser';
 import { AuthModule } from '../../../auth/infrastructure/modules/auth.module';
 
 export function config(app: INestApplication, configService: ConfigService) {
-  const cors = configService.get('AppConfiguration.corsOrigins');
+  const cors = configService.get('AppConfig.corsOrigins');
+
   app.enableCors({
     credentials: true,
-    origin: cors ? cors.split(',') : '*'
+    origin: cors,
   });
 
   app.use(cookieParser());

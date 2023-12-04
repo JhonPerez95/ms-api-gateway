@@ -2,7 +2,7 @@
   "name": "ms-api-gateway",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Jhon Perez",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -28,8 +28,11 @@
     "@nestjs/microservices": "^10.2.8",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.1.16",
+    "@types/morgan": "^1.9.9",
     "cookie-parser": "^1.4.6",
     "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "nest-morgan": "^2.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "swagger-ui-express": "^5.0.0"
@@ -44,6 +47,7 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
