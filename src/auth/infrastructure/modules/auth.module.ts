@@ -5,6 +5,7 @@ import { join } from 'path';
 import { AuthController } from '../controllers/auth.controller';
 import { AuthService } from '../services/auth.service';
 import { AuthProto } from '../../domain/enums/auth.enums';
+import { AUTH_PACKAGE_NAME, AUTH_SERVICE_NAME } from '../proto/auth.pb';
 
 @Module({
   controllers: [AuthController],
@@ -12,9 +13,9 @@ import { AuthProto } from '../../domain/enums/auth.enums';
   imports: [
     ClientsModule.register([
       {
-        name: AuthProto.AUTH_PACKAGE_NAME,
+        name: AUTH_SERVICE_NAME,
         options: {
-          package: AuthProto.AUTH_PACKAGE_NAME,
+          package: AUTH_PACKAGE_NAME,
           protoPath: join(__dirname, '../proto/auth.proto'),
           url: '0.0.0.0:50051',
         },

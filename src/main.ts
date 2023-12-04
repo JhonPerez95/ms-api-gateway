@@ -14,9 +14,6 @@ async function bootstrap() {
   configSwagger(app);
   validateConfigValues(configService);
 
-
-  console.log(configService.get<number>('AppConfig'));
-              
   const port = configService.get<number>('AppConfig.port');
   const environment = configService.get<string>('AppConfig.environment');
 

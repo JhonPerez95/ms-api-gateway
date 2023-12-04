@@ -1,38 +1,44 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
+import { firstValueFrom } from 'rxjs';
 
 import { CreateAuthDto } from '../../domain/dto/create-auth.dto';
 import { UpdateAuthDto } from '../../domain/dto/update-auth.dto';
-import { AuthProto } from '../../domain/enums/auth.enums';
-import { AuthServiceClient } from '../proto/auth.pb';
+import {
+  AuthServiceClient,
+  AUTH_SERVICE_NAME,
+  ValidateResponse,
+  RegisterRequest,
+  LoginRequest,
+} from '../proto/auth.pb';
 
 @Injectable()
 export class AuthService {
   private svc: AuthServiceClient;
 
-  @Inject(AuthProto.AUTH_SERVICE_NAME)
+  @Inject(AUTH_SERVICE_NAME)
   private readonly client: ClientGrpc;
 
-  create(createAuthDto: CreateAuthDto) {
+  public onModuleInit(): void {
+    this.svc = this.client.getService<AuthServiceClient>(AUTH_SERVICE_NAME);
+  }
+
+  public async validate(token: string): Promise<ValidateResponse> {
+    return firstValueFrom(this.svc.validate({ token }));
+  }
+
+  async login(loginRequest: LoginRequest) {
+    return this.svc.login(loginRequest);
+  }
+
+  async register(registerRequest: RegisterRequest) {
+    return this.svc.register(registerRequest);
+  }
+
+  async create(createAuthDto: CreateAuthDto) {
     return {
       message: 'This action adds a new auth',
       data: createAuthDto,
     };
-  }
-
-  findAll() {
-    return `This action returns all auth`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
-
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
   }
 }
