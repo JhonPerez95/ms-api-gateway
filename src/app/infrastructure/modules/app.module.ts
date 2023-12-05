@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { MorganModule, MorganInterceptor } from 'nest-morgan';
+import * as Joi from 'joi';
 //
 import { AppController } from '../controllers/app.controller';
 import { AppService } from '../services/app.service';
-import * as Joi from 'joi';
 
 // Modules
 import { AuthModule } from '../../../auth/infrastructure/modules/auth.module';
