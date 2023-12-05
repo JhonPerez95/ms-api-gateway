@@ -37,3 +37,4 @@ lerna-debug.log*
 
 .env.local
 
+src/auth/infrastructure/modules/auth.module.ts

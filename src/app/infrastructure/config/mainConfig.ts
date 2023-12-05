@@ -5,7 +5,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
 import { AuthModule } from '../../../auth/infrastructure/modules/auth.module';
 
-export function config(app: INestApplication, configService: ConfigService) {
+export function configApp(app: INestApplication, configService: ConfigService) {
   const cors = configService.get('AppConfig.corsOrigins');
 
   app.enableCors({
