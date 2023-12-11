@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { MorganModule, MorganInterceptor } from 'nest-morgan';
 import * as Joi from 'joi';
+
 //
 import { AppController } from '../controllers/app.controller';
 import { AppService } from '../services/app.service';
@@ -12,6 +13,7 @@ import { AuthModule } from '../../../auth/infrastructure/modules/auth.module';
 
 // Config
 import configEnv from '../config/config';
+import { GrpcErrorInterceptor } from '../interceptors/grpc-error.interceptor.ts';
 
 @Module({
   imports: [
@@ -38,6 +40,10 @@ import configEnv from '../config/config';
     {
       provide: APP_INTERCEPTOR,
       useClass: MorganInterceptor('dev'),
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: GrpcErrorInterceptor,
     },
   ],
 })
